@@ -14,14 +14,13 @@ export function ScheduleProvider({ children }) {
   const remove = (id) => setSessionIds((prev) => prev.filter((x) => x !== id));
 
   // Checking if a session is scheduled
-  const scheduled = (sessionId) => sessionIds.includes(sessionId)
-  
-  // Session details for scheduled sessions, converting IDs to session objects
-  // map() finds the session by ID
-  // find() returns the session object matching ID
-  // TODO: adding filter(Boolean) to avoid null values if session not found
-  const schedule = sessionIds.map((id) => SESSIONS.find((session) => session.id === id));
+  const scheduled = (sessionId) => sessionIds.includes(sessionId);
 
+  // Session details for scheduled sessions, converting IDs to session objects
+  // TODO: adding filter(Boolean) to avoid null values if session not found
+  const schedule = sessionIds.map((id) =>
+    SESSIONS.find((session) => session.id === id)
+  );
 
   /// Search logic ///
   // Current search query

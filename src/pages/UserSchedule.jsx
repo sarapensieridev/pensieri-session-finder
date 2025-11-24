@@ -1,29 +1,30 @@
-import React from 'react'
-import { useSchedule } from '../context/ScheduleContext'
-import AddToScheduleButton from '../components/AddToScheduleButton'
+import { useSchedule } from "../context/ScheduleContext";
+import Sessions from "../components/Sessions";
 
-const UserSchedule = ({}) => {
-
-    const { schedule } = useSchedule()
+const UserSchedule = () => {
+  const { schedule } = useSchedule();
+  const containerClass = "flex flex-col mx-4 py-4 gap-4 items-center";
 
   return (
-    <div>
-      <h2> My schedule</h2>
+    <div className={containerClass}>
+      <h2 className="font-semibold">My schedule</h2>
+      <p className="text-sm">
+        You have {schedule.length} session{schedule.length !== 1 ? "s" : ""}{" "}
+        scheduled.
+      </p>{" "}
+      <div className="w-full">
+        {schedule.length === 0 && (
+          <p>
+            No session added yet. Go to Search if you want to add some session.
+          </p>
+        )}
 
-      {schedule.length === 0 && <p>No session added yet</p>}
-
-      {schedule.map(session => (
-        <div key={session.id}>
-          <h3>{session.title}</h3>
-          <p>{session.speaker}</p>
-          <p>{session.startsAt}</p>
-          <p>{session.durationMins}</p>
-          <AddToScheduleButton sessionId={session.id} />
-        </div>
-      ))}
+        {schedule.map((session) => (
+          <Sessions key={session.id} session={session} />
+        ))}
       </div>
-    
-  )
-}
+    </div>
+  );
+};
 
-export default UserSchedule
+export default UserSchedule;

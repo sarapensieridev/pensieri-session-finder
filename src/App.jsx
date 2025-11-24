@@ -6,13 +6,13 @@ import SearchSession from "./pages/SearchSession"
 import UserSchedule from "./pages/UserSchedule"
 import Register from "./pages/Register"
 import { VIEWS } from "../constants"
-import './index.css';
+import "./index.css";
 
 function App() {
 
   //// TODO: React Router for page navigation ////
 
-  // State to manage the current page renered
+  // State to manage the current page rendered
   const [currentPage, setCurrentPage] = useState(VIEWS.SEARCH)
 
   // Function to render the current page based on state
@@ -29,12 +29,11 @@ function App() {
     }
   }
 
-
   return (
     <ScheduleProvider>
-      <div className="bg-blue-500 w-full min-h-screen text-white flex flex-col items-center"> 
+      <div className="min-h-screen flex flex-col"> 
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <div className="bg-gray-500 w-full">{renderPage()}</div>
+      <div className="w-full">{renderPage()}</div>
       </div>
     </ScheduleProvider>
   )

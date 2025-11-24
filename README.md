@@ -1,150 +1,52 @@
-# 🎯 Frontend Take-Home Test — Session Finder + Schedule
+# Frontend Take-Home Test — Sara Pensieri
 
-## ⏱ Timebox
-Please spend **no more than 3 hours** on this task.  
-It’s okay to leave comments or TODOs for improvements if you run out of time.
+This is a small React application with a session finder page with search functionality, a user's schedule page and a registration form. 
 
 ---
 
-## 🎯 Goal
+## Project overview
 
-Build a small React app where a user can:
-
-1. **Search sessions** (from the provided mock API)
-2. **Add / remove sessions** to a personal **Schedule** (shared state)
-3. **Register** with a simple **form + validation**, and display the confirmation returned by the API
-4. **Create something original** — add a detail that shows your personal touch.
-   This could be:
-   - A visual detail or animation
-   - A reusable component pattern
-   - An interaction or small “wow” feature
-   - Anything you think represents your style and strengths
-
-**Styling is completely up to you.** 
-
-> **Recommendation:** Don’t try to make everything perfect or complete every idea.
-> Instead, **prioritize what you think is most important** (architecture, DX, UI quality, naming, etc.).
-> We value **decision-making and clarity** over quantity.
-
-**Reference (visual example only):**  
-https://68dcffe5683caab0190f57ff--guileless-truffle-7eae5c.netlify.app/
-
-
----
-
-## 🛠 Tech Rules
-- Use **React** (JavaScript).  
-- Styling is up to you — **Tailwind is optional** (bonus points if used cleanly).  
-- Don’t use heavy UI frameworks (Material UI, Ant Design, etc.).  
-- Keep it functional and clear; design polish is optional.
-
----
-
-## 🚀 Features
-
-### 1) Search
-- Input to filter sessions by **title, track, or speaker**.  
-- Display results with **title, track, speaker, start time**.  
-- Each result has an **“Add to Schedule”** button.  
-- Prevent duplicates (disable button or show a notice).
-
-### 2) My Schedule
-- List sessions the user added.  
-- Allow **Remove**.  
-- (Bonus) Sort by start time.
-
-### 3) Register
-- Form fields: **name**, **email**, **role** (`Student | Junior | Mid | Senior`).  
-- **Validation**:  
-  - Name: required.  
-  - Email: must look like a valid email.  
-  - Role: required.  
-- On submit → call `registerAttendee(payload)` and display the returned **registrationId**.
-
-### 4) Shared State
-- Use the provided **ScheduleContext** to make the schedule available across Search + My Schedule.  
-
----
-
-## 📦 Mock API
-Copy the following into `src/api.js`:
-
-```js
-export const SESSIONS = [
-  { id: "s1", title: "React Rendering Deep Dive", track: "Frontend", speaker: "A. Lee", startsAt: "2025-10-01T10:00:00Z", durationMins: 45 },
-  { id: "s2", title: "APIs without Tears", track: "Backend", speaker: "B. Singh", startsAt: "2025-10-01T11:00:00Z", durationMins: 30 },
-  { id: "s3", title: "State Mgmt Tradeoffs", track: "Frontend", speaker: "C. Gomez", startsAt: "2025-10-01T12:00:00Z", durationMins: 30 },
-  { id: "s4", title: "Practical CI/CD", track: "DevOps", speaker: "D. Chen", startsAt: "2025-10-01T13:00:00Z", durationMins: 40 },
-  { id: "s5", title: "Small Models, Big Wins", track: "AI", speaker: "E. Rossi", startsAt: "2025-10-01T14:00:00Z", durationMins: 25 },
-];
-
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-export async function searchSessions(query) {
-  await delay(300);
-  const q = (query || "").trim().toLowerCase();
-  if (!q) return SESSIONS;
-  return SESSIONS.filter(s =>
-    s.title.toLowerCase().includes(q) ||
-    s.track.toLowerCase().includes(q) ||
-    s.speaker.toLowerCase().includes(q)
-  );
-}
-
-export async function registerAttendee(payload) {
-  await delay(400);
-  if (!payload?.name || !payload?.email || !payload?.role) {
-    return { ok: false, error: "Missing fields" };
-  }
-  return { ok: true, registrationId: "REG-" + Math.floor(100000 + Math.random() * 900000) };
-}
-
-```
-
----
-
-## 📂 Provided Context
-Copy into `src/context/ScheduleContext.jsx`:
-
-```js
-import { createContext, useContext, useState } from "react";
-
-const ScheduleContext = createContext(null);
-
-export function ScheduleProvider({ children }) {
-  const [sessionIds, setSessionIds] = useState([]);
-  const add = (id) => setSessionIds(prev => (prev.includes(id) ? prev : [...prev, id]));
-  const remove = (id) => setSessionIds(prev => prev.filter(x => x !== id));
-  return (
-    <ScheduleContext.Provider value={{ sessionIds, add, remove }}>
-      {children}
-    </ScheduleContext.Provider>
-  );
-}
-
-export const useSchedule = () => useContext(ScheduleContext);
-```
-
-Wrap your app with `<ScheduleProvider>` in main.jsx or App.jsx.
+The main component handle navigation to the three principal screens. 
+Global components were created for a cleaner and more maintainable code structure.
+Utility functions handle date formatting on the session page and form validation(required fields and valid email).
+Tailwind CSS is used for styling. For larger or conditional styles, classes were extracted into variables to improve code readability and maintainability.
 
 ---
 
 ## ▶️ How to Run
 
 ```bash
+git clone <repo-link>
 npm install
-npm run dev
+npm start 
 
 ```
 
 ---
 
-## 📑 What to Submit
+### Run test
 
-- A link to a public repo (GitHub/GitLab) with your code.
+```bash
+npm test
 
-- A short README explaining:
-    - How to run the project
-    - What you’d improve with more time
-    - Any libraries you used (and why)
+```
+
+## Libraries
+
+I used: 
+> JEST: Added for unit testing validateEmail function.
+
+---
+
+## Improvements
+
+With more time, I would:
+- Implement React Router DOM for navigation.
+- Add isLoading state to search session.
+- Use useMemo hook in ScheduleContext to optimize schedule calculations and prevent unnecessary re-renders.
+- Add more tests, particularly for validateForm function and for registration functions. 
+- Add filter(Boolean) to schedule calculation to avoid null values when a session not found.
+- Use clsx or classnames for conditional classes instead of template literals for cleaner JSX.
+
+
 

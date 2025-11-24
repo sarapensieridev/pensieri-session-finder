@@ -1,5 +1,5 @@
-    export const VIEWS = {
-    SEARCH: 'SEARCH',
-    SCHEDULE: 'SCHEDULE',
-    REGISTER: 'REGISTER'
+  export const VIEWS = {
+    SEARCH: "SEARCH",
+    SCHEDULE: "SCHEDULE",
+    REGISTER: "REGISTER"
   }
