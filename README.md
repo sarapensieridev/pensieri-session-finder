@@ -4,7 +4,7 @@ This is a small React application with a session finder page with search functio
 
 ---
 
-## Project overview
+## 📌 Project overview
 
 The main component handle navigation to the three principal screens. 
 Global components were created for a cleaner and more maintainable code structure.
@@ -16,7 +16,7 @@ Tailwind CSS is used for styling. For larger or conditional styles, classes were
 ## ▶️ How to Run
 
 ```bash
-git clone <repo-link>
+git clone https://github.com/sarapensieridev/pensieri-session-finder
 npm install
 npm start 
 
@@ -24,17 +24,17 @@ npm start
 
 ---
 
-### Run test
+### 🔎 Run test
 
 ```bash
 npm test
 
 ```
 
-## Libraries
+## 📖 Libraries
 
 I used: 
-> JEST: Added for unit testing validateEmail function.
+- JEST: Added for unit testing validateEmail function.
 
 ---
 
