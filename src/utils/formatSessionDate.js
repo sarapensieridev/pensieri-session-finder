@@ -1,4 +1,4 @@
-    // Changing date format from ISO to a human readable format
+    // Changing date format from ISO to a readable format
 
     export const formatSessionDate = (isoDate) => {
       const date = new Date(isoDate)

@@ -12,10 +12,8 @@ function App() {
 
   //// TODO: React Router for page navigation ////
 
-  // State to manage the current page rendered
   const [currentPage, setCurrentPage] = useState(VIEWS.SEARCH)
 
-  // Function to render the current page based on state
   const renderPage = () => {
     switch (currentPage) {
       case VIEWS.SEARCH:

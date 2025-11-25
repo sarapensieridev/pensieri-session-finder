@@ -2,7 +2,6 @@ import { useSchedule } from "../context/ScheduleContext";
 import Sessions from "../components/Sessions";
 
 const SearchSession = () => {
-  // State from context
   const { searchQuery, setSearchQuery, filteredSessions } = useSchedule();
 
   const handleSearchChange = (e) => {
@@ -30,7 +29,6 @@ const SearchSession = () => {
         />
       </div>
       <div className={sessionContainerClass}>
-        {/* Mapping and rendering filtered sessions */}
         {filteredSessions.map((session) => (
           <Sessions key={session.id} session={session} noMargin />
         ))}

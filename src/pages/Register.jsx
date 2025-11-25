@@ -3,18 +3,18 @@ import { registerAttendee } from "../api";
 import { validateForm } from "../utils/validateForm";
 
 const Register = () => {
-  // State for user input
   const [user, setUser] = useState({ name: "", email: "", role: "" });
   const [error, setError] = useState({ name: "", email: "", role: "" });
   const [message, setMessage] = useState({ type: "", text: "" });
 
   const buttonClass =
-    "bg-green-200 text-black w-72 p-2 rounded-md cursor-pointer p-2";
+    "bg-teal-700 text-white w-72 p-2 rounded-md cursor-pointer p-2";
   const formClass =
     "flex flex-col items-center border rounded-md p-6 gap-6 mb-10";
   const formGroupClass = "flex flex-col items-center gap-4";
   const labelClass = "text-md";
   const inputClass = "w-72 border rounded-md p-2";
+  
 
   // useEffect to close popup and clear message
   useEffect(() => {
@@ -22,7 +22,7 @@ const Register = () => {
     if (message.text && message.type === "success") {
       timer = setTimeout(() => {
         setMessage({ type: "", text: "" });
-      }, 2000);
+      }, 3000);
     }
     return () => clearTimeout(timer);
   }, [message]);

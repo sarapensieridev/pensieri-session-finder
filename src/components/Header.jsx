@@ -13,7 +13,7 @@ const Header = ({ setCurrentPage, currentPage }) => {
     const isSelected = view === currentPage;
     const baseButtonClass = "cursor-pointer p-2 border-b-4";
     const selectedClass = isSelected
-      ? "border-green-200"
+      ? "border-teal-700"
       : "border-transparent";
     return (
       <button

@@ -23,8 +23,8 @@ describe("validateEmail", () => {
       "user@.com",
       "user@domain",
       "user@domain.",
-      "user@domain.c",   // too short TLD
-      "user@domain..com" // double dot
+      "user@domain.c",   
+      "user@domain..com" 
     ];
 
     invalidEmails.forEach(email => {
